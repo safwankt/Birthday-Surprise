@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* professional dark gradient */
+            background: linear-gradient(135deg, #000000 0%, #0d0d0d 50%, #1a1a1a 100%);
+            background-attachment: fixed;
+            color: #dcdcdc; /* light grey text for readability */
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 900px;
+            width: 95%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header/Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 182, 193, 0.2);
+            transition: opacity 0.4s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #a8d0e6; /* soft blue accent */
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            background: rgba(168, 208, 230, 0.2);
+            color: #fff;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Main Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 2rem 1rem;
+        }
+
+        .section-content {
+            max-width: 1000px;
+            width: 100%;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Welcome Section */
+        #welcome {
+            /* gradient overlay plus background image */
+            background: linear-gradient(135deg, rgba(19, 9, 11, 0.3), rgba(25, 16, 25, 0.3)),
+                        url('bg ss.jpeg') center/cover no-repeat;
+            text-align: center;
+        }
+
+        .welcome-title {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffc0cb, #ff69b4, #da70d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .welcome-subtitle {
+            font-size: 1.5rem;
+            color: #c9a9d7;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hearts {
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        /* Memories Section */
+        #memories {
+            background: linear-gradient(135deg, rgba(216, 191, 216, 0.05), rgba(255, 182, 193, 0.05));
+            min-height: auto;
+            padding: 80px 2rem 0.5rem;
+        }
+
+        /* Reasons Section */
+        #reasons {
+            padding-top: 2rem;
+            min-height: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #ffc0cb;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #da70d6, transparent);
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .memory-card {
+            background: rgba(30, 30, 50, 0.6);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .memory-card:hover::before {
+            left: 100%;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 182, 193, 0.6);
+            background: rgba(30, 30, 50, 0.8);
+        }
+
+        .memory-card h3 {
+            color: #da70d6;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .memory-card p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .memory-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    justify-items:center;
+    gap:1.5rem;
+    margin-top:2rem;
+}
+
+/* second row (2 photos) */
+.photo-gallery.second-row{
+    grid-template-columns:repeat(2,1fr);
+    justify-content:center;
+    max-width:500px;
+    margin:1.5rem auto 0 auto;
+}
+
+        .photo-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(30, 30, 50, 0.6);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            aspect-ratio: 9/16;
+            width: 100%;
+            max-width: 200px;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: rotateY(-8deg) rotateX(8deg) translateZ(15px);
+        }
+
+        .photo-item::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:linear-gradient(
+    );
+    background-size:200% 200%;
+    opacity:0;
+    transition:opacity 0.5s ease;
+    z-index:2;
+}
+
+        @keyframes bgShine {
+            0% { background-position: 200% 0%; }
+            50% { background-position: -200% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .photo-item:hover {
+            border-color: rgba(255, 182, 193, 0.8);
+            transform: rotateY(8deg) rotateX(-8deg) translateZ(30px);
+            box-shadow: 0 25px 60px rgba(218, 112, 214, 0.6);
+        }
+
+        .photo-item:hover::before {
+            opacity: 1;
+            animation: bgShine 2s ease-in-out infinite;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: rgba(30, 30, 50, 0.8);
+        }
+
+        .photo-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 2rem 1rem 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-controls {
+            opacity: 2;
+        }
+
+        .photo-caption {
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Crop Area */
+        .crop-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .crop-modal.active {
+            display: flex;
+        }
+
+        .crop-container {
+            background: rgba(20, 20, 40, 0.95);
+            border: 1px solid #da70d6;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .crop-canvas {
+            width: 270px;
+            height: 480px;
+            border: 2px solid #da70d6;
+            border-radius: 10px;
+            background: black;
+            margin: 0 auto;
+        }
+
+        .zoom-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .zoom-control input {
+            width: 200px;
+            accent-color: #da70d6;
+        }
+
+        .zoom-value {
+            color: #ffc0cb;
+            min-width: 50px;
+        }
+
+        .crop-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #da70d6, #ffc0cb);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(218, 112, 214, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 192, 203, 0.1);
+            color: #ffc0cb;
+            border: 1px solid #ffc0cb;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 192, 203, 0.2);
+        }
+
+        /* Reasons Section */
+        .reasons-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .reason-item {
+            background: rgba(30, 30, 50, 0.6);
+            border-left: 4px solid #da70d6;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .reason-item:hover {
+            transform: translateX(10px);
+            border-left-color: #ffc0cb;
+            background: rgba(30, 30, 50, 0.8);
+        }
+
+        .reason-item h3 {
+            color: #ffc0cb;
+            margin-bottom: 0.5rem;
+        }
+
+        .reason-item p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Inside Jokes Section */
+        .jokes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .joke-card {
+            background: linear-gradient(135deg, rgba(218, 112, 214, 0.1), rgba(255, 192, 203, 0.1));
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .joke-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 182, 193, 0.6);
+            background: linear-gradient(135deg, rgba(218, 112, 214, 0.2), rgba(255, 192, 203, 0.2));
+        }
+
+        .joke-card h3 {
+            color: #da70d6;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .joke-card p {
+            color: #c9a9d7;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Awards Section */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .award-card {
+            background: linear-gradient(135deg, rgba(255, 192, 203, 0.15), rgba(216, 191, 216, 0.15));
+            border: 2px solid #ffc0cb;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .award-card::before {
+            content: '👑';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 5rem;
+            opacity: 0.1;
+        }
+
+        .award-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            border-color: #da70d6;
+            background: linear-gradient(135deg, rgba(255, 192, 203, 0.25), rgba(216, 191, 216, 0.25));
+        }
+
+        .award-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .award-card p {
+            color: #ffc0cb;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* Messages Section */
+        .messages-container {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .message-card {
+            background: rgba(30, 30, 50, 0.6);
+            border-left: 4px solid #da70d6;
+            padding: 1.5rem;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .message-from {
+            color: #da70d6;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .message-text {
+            color: #c9a9d7;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Surprise Section */
+        #surprise {
+            background: linear-gradient(135deg, rgba(218, 112, 214, 0.05), rgba(255, 182, 193, 0.05));
+        }
+
+        .surprise-box {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(30, 30, 50, 0.8);
+            border: 2px solid #da70d6;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .surprise-btn {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #da70d6, #ffc0cb);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(218, 112, 214, 0.5);
+        }
+
+        .surprise-btn.pop {
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .surprise-content {
+            display: none;
+            margin-top: 2rem;
+            animation: slideDown 0.5s ease;
+        }
+
+        .surprise-content.revealed {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .surprise-content h3 {
+            color: #ffc0cb;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .surprise-content p {
+            color: #c9a9d7;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Music Section */
+        .music-player {
+            background: rgba(30, 30, 50, 0.8);
+            border: 1px solid #da70d6;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .music-player h3 {
+            color: #ffc0cb;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .music-description {
+            color: #c9a9d7;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .music-player iframe {
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .music-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2/1;
+        }
+
+        .music-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Final Message */
+        #final {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 192, 203, 0.1), rgba(216, 191, 216, 0.1));
+            padding-bottom: 5rem;
+        }
+
+        .final-message {
+            font-size: 1.3rem;
+            color: #c9a9d7;
+            line-height: 1.8;
+            background: rgba(30, 30, 50, 0.6);
+            border: 1px solid #da70d6;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-message p {
+            margin-bottom: 1rem;
+        }
+
+        .signature {
+            color: #ffc0cb;
+            font-weight: 600;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Glitter Animation */
+        .glitter {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, gold, rgb(255, 3, 20), rgb(53, 3, 3),rgb(255, 3, 20), rgb(93, 3, 98));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1500;
+            animation: glitter 2s ease-in-out infinite;
+        }
+
+        @keyframes glitter {
+            0% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+            100% { opacity: 0; transform: scale(0) rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 100px 1.5rem 2rem;
+                min-height: auto;
+            }
+
+            nav {
+                gap: 0.8rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .memories-grid,
+            .jokes-grid,
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .photo-item {
+                max-width: 100%;
+            }
+
+            .final-message {
+                padding: 2rem;
+                font-size: 1rem;
+            }
+
+            header {
+                padding: 0.8rem 1rem;
+            }
+
+            .music-player {
+                padding: 1.5rem;
+            }
+
+            .music-player h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .welcome-title {
+                font-size: 1.8rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            nav a {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .memory-card,
+            .reason-item,
+            .joke-card,
+            .award-card {
+                padding: 1rem;
+            }
+
+            .surprise-btn {
+                font-size: 1rem;
+                padding: 0.8rem 2rem;
+            }
+
+            .surprise-box {
+                padding: 2rem;
+            }
+
+            .final-message {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .music-player {
+                padding: 1rem;
+            }
+
+            .music-player h3 {
+                font-size: 1rem;
+            }
+
+            .photo-item {
+                max-width: 140px;
+            }
+
+            .photo-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+.confetti{
+position:fixed;
+top:-20px;
+width:6px;
+height:20px;
+background:#ff69b4;
+animation:fall linear;
+z-index:2000;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh) rotate(360deg);
+}
+}
+/* HORSE SURPRISE */
+
+.horse-scene{
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:40px;
+    margin-top:2rem;
+    flex-wrap:wrap;
+}
+
+.horse{
+    font-size:70px;
+    position:relative;
+    animation:horsePop 0.8s ease forwards;
+    transform:scale(0);
+}
+
+.horse1{animation-delay:0.2s;}
+.horse2{animation-delay:0.6s;}
+.horse3{animation-delay:1s;}
+
+@keyframes horsePop{
+    0%{
+        transform:scale(0) translateY(60px);
+        opacity:0;
+    }
+    60%{
+        transform:scale(1.2) translateY(-10px);
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.poster{
+    position:absolute;
+    bottom:90px;
+    left:50%;
+    transform:translateX(-50%);
+    background:white;
+    color:black;
+    font-weight:bold;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:14px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* Poster */
+
+.poster{
+    position:absolute;
+    bottom:85px;
+    left:50%;
+    transform:translateX(-50%);
+    background:white;
+    color:black;
+    font-weight:bold;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    text-align:center;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="#welcome">Home</a>
+            <a href="#memories">Memories</a>
+            <a href="#reasons">Why You're Amazing</a>
+            <a href="#jokes">Mad Jokes</a>
+            <a href="#awards">Awards</a>
+            <a href="#messages">Messages</a>
+            <a href="#vibe">You likes</a>
+            <a href="#surprise">Surprise</a>
+            <a href="#final">Conclusion</a>
+        </nav>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="welcome">
+        <div class="section-content">
+            <div class="hearts">💕</div>
+            <h1 class="welcome-title">Happy Birthday Kuthireeeeee</h1>
+            <p class="welcome-subtitle">
+                This little corner of the internet exists just to celebrate you today.<br>
+                You deserve all the love, joy, and happiness in the world! ✨
+            </p>
+            <div class="hearts" style="animation-delay: 0.5s;">💫</div>
+        </div>
+    </section>
+
+    <!-- Memories Section -->
+    <section id="memories">
+        <div class="section-content">
+            <h2 class="section-title">📸 Our Memories</h2>
+            <div class="memories-grid">
+                <div class="memory-card">
+                    <div class="memory-emoji">🌟</div>
+                    <h3>How We Met</h3>
+                    <p>That jaada thendiii friend sat beside me in +1 who came to class only for studiying.</p>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-emoji">😂</div>
+                    <h3>Chaotic Moments</h3>
+                    <p>The bus journey after the school leaves.We all together <br>
+                    sitting and making mad of each others.</p>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-emoji">✈️</div>
+                    <h3>Adventures</h3>
+                    <p>Ithvereee trip povatha namakkenth adventuresss.</p>
+                </div>
+            </div>
+
+            <h3 style="color:#ffc0cb;margin-top:3rem;text-align:center;">Photos That Matter</h3>
+
+<!-- FIRST ROW (3 photos) -->
+<div class="photo-gallery">
+    <div class="photo-item">
+        <img src="sur1.jpeg">
+        <div class="photo-controls">
+            <div class="photo-caption">Cringe Memory</div>
+        </div>
+    </div>
+
+    <div class="photo-item">
+        <img src="sur2.jpeg">
+        <div class="photo-controls">
+            <div class="photo-caption">Unforgettable Moment</div>
+        </div>
+    </div>
+
+    <div class="photo-item">
+        <img src="sur3.jpeg">
+        <div class="photo-controls">
+            <div class="photo-caption">Special Memory</div>
+        </div>
+    </div>
+</div>
+
+<!-- SECOND ROW (2 photos centered) -->
+<div class="photo-gallery second-row">
+    <div class="photo-item">
+        <img src="sur4.jpeg">
+        <div class="photo-controls">
+            <div class="photo-caption">Beautiful Memory</div>
+        </div>
+    </div>
+
+    <div class="photo-item">
+        <img src="sur5.jpeg">
+        <div class="photo-controls">
+            <div class="photo-caption">Nonchalant Memory</div>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- Crop Modal REMOVED - No longer needed for static photos -->
+
+    <!-- Reasons Section -->
+    <section id="reasons">
+        <div class="section-content">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crop Modal REMOVED - No longer needed for static photos -->
+
+    <!-- Reasons Section -->
+    <section id="reasons">
+        <div class="section-content">
+            <h2 class="section-title">💖 Reasons You're Amazing</h2>
+            <div class="reasons-list">
+                <div class="reason-item">
+                    <h3>✨ You Give The Best Advice</h3>
+                    <p>You always know exactly what to say when we need it most. Your wisdom and perspective have gotten me through so many situations.</p>
+                </div>
+                <div class="reason-item">
+                    <h3>🔥 You Hype Everyone Up</h3>
+                    <p>No one can make me feel like I can push over the situation by your motive. Your energy your support is everything.</p>
+                </div>
+                <div class="reason-item">
+                    <h3>🍽️ You Know All The Best Places</h3>
+                    <p>Unfortunately we have had no trip together.hahahahahah!! May god give a better chance to plan one.</p>
+                </div>
+                <div class="reason-item">
+                    <h3>💎 You're Loyal & Real</h3>
+                    <p>In a world of fake people, you're refreshingly authentic. Your loyalty means everything and I never have to question where I stand with you.</p>
+                </div>
+                <div class="reason-item">
+                    <h3>😂 You're Chaotic In The Best Way</h3>
+                    <p>Life would be so boring without your aksharaspudathaaaa!. You bring the fun, the laughs, and the stories we'll tell forever.</p>
+                </div>
+                <div class="reason-item">
+                    <h3>👑 You're Just YOU</h3>
+                    <p>And that's the best reason of all. There's literally no one like you, and this world is infinitely better because you're in it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inside Jokes Section -->
+    <section id="jokes">
+        <div class="section-content">
+            <h2 class="section-title">👯‍♀️ Things Only We Understand</h2>
+            <div class="jokes-grid">
+                <div class="joke-card">
+                    <h3>Inside Joke #1</h3>
+                    <p>"Kuthiraaaaaaa. for a reason."</p>
+                </div>
+                <div class="joke-card">
+                    <h3>That One Time...</h3>
+                    <p>"I thought that you are a jaada thendiii."</p> 
+                </div>
+                <div class="joke-card">
+                    <h3>Our Nickname Game</h3>
+                    <p>"idk you do have a nickname or not. but mine you know rightttt!."</p>
+                </div>
+                <div class="joke-card">
+                    <h3>Running Joke</h3>
+                    <p>"Everyday you reach me like iam a bigthing for youuu.idk whyyyyy!"</p>
+                </div>
+                <div class="joke-card">
+                    <h3>You'd Have To Be There</h3>
+                    <p>"I think that you should be a great artist for realllll."</p>
+                </div>
+                <div class="joke-card">
+                    <h3>Main Character Energy</h3>
+                    <p>"Your drawing makes us so realll to see.And the way you do it is a great blessing you got from the god."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards">
+        <div class="section-content">
+            <h2 class="section-title">🎖️ Your Funny Awards</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-emoji">📸</div>
+                    <p>Being a sarcastic girl in this gen as a aksharaspudatha pennn.</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-emoji">👗</div>
+                    <p>Just a kunjikuttyyyy </p>
+                </div>
+                <div class="award-card">
+                    <div class="award-emoji">🎭</div>
+                    <p>Professional art setter (In The Best Way)</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-emoji">🧠</div>
+                    <p>Certified Overthinker for real(But Make It Relatable)</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-emoji">✨</div>
+                    <p>Proud to say as a 90's girl born in Genzzzz.</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-emoji">🌟</div>
+                    <p>Iconic trip and food spot plannerr.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Messages Section -->
+    <section id="messages">
+        <div class="section-content">
+            <h2 class="section-title">💌 Messages From People Who Loves You</h2>
+            <div class="messages-container">
+                <div class="message-card">
+                    <div class="message-from">From: ME💕</div>
+                    <p class="message-text">"Koodthalonnum paryanillaa.ithrokke thanneee ennalum: <br>
+                        You are a good and kind hearted person for real. "</p>
+                </div>
+                <div class="message-card">
+                    <div class="message-from">From: Family 👨‍👩‍👧‍👦</div>
+                    <p class="message-text">"Sankadippikkan kazhinjillaa sorryyyyyy."</p>
+                </div>
+                <div class="message-card">
+                    <div class="message-from">From: Your Squad 👯‍♀️</div>
+                    <p class="message-text">"You know our squad,rightt..? <br>
+                        But the main character is now not with us forever. So yaaah <br>
+                        you and our squad was forever a gem for us."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music/Your Vibe Section -->
+    <section id="vibe">
+        <div class="section-content">
+            <h2 class="section-title">🎶 Your Vibe</h2>
+            <div class="music-container">
+                <iframe src="https://open.spotify.com/embed/track/1aSHbU8F6aUBsLBYRfyuk0?utm_source=oembed" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Surprise Section -->
+    <section id="surprise">
+       <div class="surprise-box">
+    <p style="color: #c9a9d7; font-size: 1.1rem; margin-bottom: 1.5rem;">
+        Click the button below for your birthday surprise... 👇
+    </p>
+
+    <button class="surprise-btn" id="surpriseBtn">
+        Click For Your Surprise 🎁
+    </button>
+
+    <div class="surprise-content" id="surpriseContent">
+
+        <div class="horse-scene">
+
+            <div class="horse horse1">
+                🐴
+                <div class="poster">HAPPY<br>BIRTHDAY</div>
+            </div>
+
+            <div class="horse horse2">
+                🐴
+                <div class="poster">KUTHIREEE!</div>
+            </div>
+
+            <div class="horse horse3">
+                🐴
+                <div class="poster">🎉🎂🎉</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    </section>
+
+    <!-- Final Message Section -->
+    <section id="final">
+        <div class="section-content">
+            <h2 class="section-title">💝 One Last Thing...</h2>
+            <div class="final-message">
+                <p>
+                    You deserve all the happiness in the world. Seriously.
+                </p>
+                <p>
+                    I'm so grateful to have you as my friend. You make life better in ways you probably don't even realize. 
+                    Your kindness, your laughter, your loyalty — they all matter more than you know.
+                </p>
+                <p>
+                    Here's to more late-night talks, random adventures, spontaneous road trips, inside jokes that only we get, 
+                    and memories we'll be laughing about for years to come.
+                </p>
+                <p>
+                    Happy 21st Birthday,Kuthireeee.
+                               </p>
+                <p style="margin-top: 2rem; font-style: italic;">
+                    Life is better with you in it. Now go celebrate! 🎉
+                </p>
+                <div class="signature">
+                    — From Your Best Friend 💕
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        document.getElementById("surpriseBtn").addEventListener("click", function(){
+
+const content = document.getElementById("surpriseContent");
+content.classList.add("revealed");
+
+/* confetti */
+for (let i=0;i<40;i++){
+    const confetti=document.createElement("div");
+    confetti.className="confetti";
+    confetti.style.left=Math.random()*100+"%";
+    confetti.style.animationDuration=(2+Math.random()*2)+"s";
+    document.body.appendChild(confetti);
+
+    setTimeout(()=>confetti.remove(),4000);
+}
+
+});
+//surprise reveal function
+        function revealSurprise() {
+    const content = document.getElementById('surpriseContent');
+    content.classList.add('revealed');
+
+    triggerConfetti();
+    triggerGlitter();
+
+    const btn = document.querySelector('.surprise-btn');
+    btn.classList.add('pop');
+    setTimeout(() => btn.classList.remove('pop'), 300);
+}
+            
+            // Add pop effect to button
+            const btn = document.querySelector('.surprise-btn');
+            btn.classList.add('pop');
+            setTimeout(() => btn.classList.remove('pop'), 300);
+
+        // Confetti Animation
+        function triggerConfetti() {
+            const colors = ['#ffc0cb', '#da70d6', '#c9a9d7', '#ff69b4'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.background = `linear-gradient(to bottom, ${color}, transparent)`;
+                confetti.style.animation = `fall ${2 + Math.random() * 1}s linear`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Glitter Animation
+        function triggerGlitter() {
+            for (let i = 0; i < 100; i++) {
+                const glitter = document.createElement('div');
+                glitter.className = 'glitter';
+                glitter.style.left = Math.random() * 100 + '%';
+                glitter.style.top = Math.random() * 100 + '%';
+                glitter.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(glitter);
+
+                setTimeout(() => glitter.remove(), 3000);
+            }
+        }
+
+        // Confetti animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            .confetti {
+                position: fixed;
+                width: 3px;
+                height: 60px;
+                pointer-events: none;
+                z-index: 1500;
+                border-radius: 2px;
+                opacity: 0.8;
+            }
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scroll enhancement
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navbar fade on scroll
+        let lastScroll = 0;
+        const headerEl = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const current = window.pageYOffset;
+            if (current > lastScroll) {
+                // scrolling down
+                headerEl.style.opacity = '0';
+                headerEl.style.pointerEvents = 'none';
+            } else {
+                // scrolling up
+                headerEl.style.opacity = '1';
+                headerEl.style.pointerEvents = 'auto';
+            }
+            lastScroll = current;
+        });
+
+        // popup on refresh/load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+            }, 0);
+        });
+    </script>
+</body>
+</html>
